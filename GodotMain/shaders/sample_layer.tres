@@ -1,0 +1,52 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://cwiwxim4yq5qr"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_k2qk3"]
+output_port_for_preview = 0
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_pf1tp"]
+expanded_output_ports = [0]
+input_name = "shadow"
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+
+void fragment() {
+// Input:2
+	vec2 n_out2p0 = UV;
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out2p0, 0.0);
+
+
+}
+
+void light() {
+// Input:2
+	vec4 n_out2p0 = SHADOW_MODULATE;
+	float n_out2p1 = n_out2p0.r;
+
+
+// Output:0
+	LIGHT.rgb = vec3(n_out2p0.xyz);
+	LIGHT.a = n_out2p1;
+
+
+}
+"
+graph_offset = Vector2(-166.5, -42.5)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(880, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_k2qk3")
+nodes/fragment/2/position = Vector2(-220, 40)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
+nodes/light/0/position = Vector2(540, 160)
+nodes/light/2/node = SubResource("VisualShaderNodeInput_pf1tp")
+nodes/light/2/position = Vector2(-300, 120)
+nodes/light/connections = PackedInt32Array(2, 0, 0, 0, 2, 1, 0, 1)

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bogi1qqgb37jg"]
+
+[ext_resource type="Shader" uid="uid://cwiwxim4yq5qr" path="res://shaders/sample_layer.tres" id="1_8j5ms"]
+[ext_resource type="Texture2D" uid="uid://cpn8wpixb72rt" path="res://assets/color_shapes/circle_#00bf00.png" id="1_rn5tx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3u7k"]
+shader = ExtResource("1_8j5ms")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4du6h"]
+shader = ExtResource("1_8j5ms")
+
+[node name="Sample_Layer" type="Node2D"]
+material = SubResource("ShaderMaterial_j3u7k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(238, 288)
+texture = ExtResource("1_rn5tx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+material = SubResource("ShaderMaterial_4du6h")
+use_parent_material = true
+position = Vector2(238, 288)

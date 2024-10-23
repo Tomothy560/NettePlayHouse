@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://caffvsju4knv"]
+
+[ext_resource type="Texture2D" uid="uid://dx8osqyjmftol" path="res://assets/color_shapes/square_#7f3f7f.png" id="1_2mil7"]
+[ext_resource type="PackedScene" uid="uid://bogi1qqgb37jg" path="res://scenes/sample_layer.tscn" id="2_u5c1l"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bii2f"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="SampleScene" type="Node3D"]
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.54686, -0.544315)
+texture = ExtResource("1_2mil7")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+layers = 2
+texture = SubResource("ViewportTexture_bii2f")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+
+[node name="Sample_Layer" parent="Sprite3D/SubViewport" instance=ExtResource("2_u5c1l")]
