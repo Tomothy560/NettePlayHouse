@@ -1,0 +1,108 @@
+[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://dr7wpurehnp32"]
+
+[ext_resource type="Texture2D" uid="uid://bob2unftru85g" path="res://assets/sky-texture-high-resolution-panoramic-blue-green-clouds-stock-photo-5-1024x379.jpg" id="1_5ob4j"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_vgiqw"]
+output_port_for_preview = 0
+expanded_output_ports = [0]
+texture = ExtResource("1_5ob4j")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_18d7u"]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_visfq"]
+expanded_output_ports = [0]
+input_name = "sky_coords"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_13vvn"]
+expanded_output_ports = [0]
+input_name = "sky_coords"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0guig"]
+expanded_output_ports = [0]
+input_name = "eyedir"
+
+[sub_resource type="VisualShaderNodeIntConstant" id="VisualShaderNodeIntConstant_ytpdv"]
+output_port_for_preview = 0
+constant = 30
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_w46a1"]
+constant = Color(0.509804, 0.403922, 1, 1)
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_de7s2"]
+expanded_output_ports = [0]
+
+[sub_resource type="VisualShaderNodeIntOp" id="VisualShaderNodeIntOp_ekehu"]
+default_input_values = [0, 255, 1, 0]
+operator = 1
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_7lf2k"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_67pv0"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_wf1hf"]
+expanded_output_ports = [0]
+input_name = "screen_uv"
+
+[resource]
+code = "shader_type sky;
+uniform sampler2D tex_sky_10 : source_color;
+
+
+
+void sky() {
+// Input:13
+	vec2 n_out13p0 = SKY_COORDS;
+	float n_out13p1 = n_out13p0.r;
+	float n_out13p2 = n_out13p0.g;
+
+
+// VectorCompose:11
+	vec2 n_out11p0 = vec2(n_out13p1, n_out13p2);
+
+
+// Texture2D:10
+	vec4 n_out10p0 = texture(tex_sky_10, n_out11p0);
+
+
+// Output:0
+	COLOR = vec3(n_out10p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-1138.16, -621.605)
+mode = 3
+flags/use_half_res_pass = false
+flags/use_quarter_res_pass = false
+flags/disable_fog = false
+flags/use_debanding = false
+nodes/sky/0/position = Vector2(460, -60)
+nodes/sky/2/node = SubResource("VisualShaderNodeInput_0guig")
+nodes/sky/2/position = Vector2(-2220, 20)
+nodes/sky/3/node = SubResource("VisualShaderNodeIntConstant_ytpdv")
+nodes/sky/3/position = Vector2(-640, 1020)
+nodes/sky/4/node = SubResource("VisualShaderNodeColorConstant_w46a1")
+nodes/sky/4/position = Vector2(-640, 180)
+nodes/sky/5/node = SubResource("VisualShaderNodeVectorCompose_de7s2")
+nodes/sky/5/position = Vector2(-160, -600)
+nodes/sky/6/node = SubResource("VisualShaderNodeIntOp_ekehu")
+nodes/sky/6/position = Vector2(-640, 660)
+nodes/sky/7/node = SubResource("VisualShaderNodeColorOp_7lf2k")
+nodes/sky/7/position = Vector2(-40, 900)
+nodes/sky/8/node = SubResource("VisualShaderNodeColorOp_67pv0")
+nodes/sky/8/position = Vector2(-100, 180)
+nodes/sky/9/node = SubResource("VisualShaderNodeInput_wf1hf")
+nodes/sky/9/position = Vector2(-980, 1520)
+nodes/sky/10/node = SubResource("VisualShaderNodeTexture_vgiqw")
+nodes/sky/10/position = Vector2(-1200, -460)
+nodes/sky/11/node = SubResource("VisualShaderNodeVectorCompose_18d7u")
+nodes/sky/11/position = Vector2(-1560, -320)
+nodes/sky/12/node = SubResource("VisualShaderNodeInput_visfq")
+nodes/sky/12/position = Vector2(-780, -560)
+nodes/sky/13/node = SubResource("VisualShaderNodeInput_13vvn")
+nodes/sky/13/position = Vector2(-2220, -360)
+nodes/sky/connections = PackedInt32Array(3, 0, 7, 1, 4, 0, 8, 0, 2, 2, 8, 1, 11, 0, 10, 0, 13, 1, 11, 0, 13, 2, 11, 1, 12, 1, 5, 0, 12, 2, 5, 1, 10, 0, 0, 0)

@@ -1,22 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://caffvsju4knv"]
+[gd_scene load_steps=9 format=3 uid="uid://caffvsju4knv"]
 
-[ext_resource type="Texture2D" uid="uid://dx8osqyjmftol" path="res://assets/color_shapes/square_#7f3f7f.png" id="1_2mil7"]
+[ext_resource type="Script" path="res://src/DebugTest/camera_controller.gd" id="1_tufi8"]
 [ext_resource type="PackedScene" uid="uid://bogi1qqgb37jg" path="res://scenes/sample_layer.tscn" id="2_u5c1l"]
+[ext_resource type="PackedScene" uid="uid://cq2lstc7o4sbw" path="res://prefabs/Gui/main_gui.tscn" id="3_ierxs"]
+[ext_resource type="Shader" uid="uid://dr7wpurehnp32" path="res://shaders/sample_sky_shader.tres" id="3_s28j5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e3eru"]
+shader = ExtResource("3_s28j5")
+
+[sub_resource type="Sky" id="Sky_60765"]
+sky_material = SubResource("ShaderMaterial_e3eru")
+
+[sub_resource type="Environment" id="Environment_j07k4"]
+background_mode = 2
+sky = SubResource("Sky_60765")
+sky_rotation = Vector3(0, -3.82227, 0)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bii2f"]
-viewport_path = NodePath("Sprite3D/SubViewport")
+viewport_path = NodePath("SpriteLayers/Layer0/Layer_1/SubViewport")
 
 [node name="SampleScene" type="Node3D"]
 
-[node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.54686, -0.544315)
-texture = ExtResource("1_2mil7")
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+fov = 92.8125
+script = ExtResource("1_tufi8")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j07k4")
+
+[node name="SpriteLayers" type="Node3D" parent="."]
+
+[node name="Layer0" type="Node3D" parent="SpriteLayers"]
+
+[node name="Layer_1" type="Sprite3D" parent="SpriteLayers/Layer0"]
 layers = 2
 texture = SubResource("ViewportTexture_bii2f")
 
-[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+[node name="SubViewport" type="SubViewport" parent="SpriteLayers/Layer0/Layer_1"]
+transparent_bg = true
+size = Vector2i(1154, 654)
 
-[node name="Sample_Layer" parent="Sprite3D/SubViewport" instance=ExtResource("2_u5c1l")]
+[node name="Sample_Layer" parent="SpriteLayers/Layer0/Layer_1/SubViewport" instance=ExtResource("2_u5c1l")]
+
+[node name="Layer1" type="Node3D" parent="SpriteLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+
+[node name="Layer_1" type="Sprite3D" parent="SpriteLayers/Layer1"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+layers = 2
+texture = SubResource("ViewportTexture_bii2f")
+
+[node name="Layer2" type="Node3D" parent="SpriteLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="Layer_2" type="Sprite3D" parent="SpriteLayers/Layer2"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+layers = 2
+texture = SubResource("ViewportTexture_bii2f")
+
+[node name="Layer3" type="Node3D" parent="SpriteLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
+
+[node name="Layer_3" type="Sprite3D" parent="SpriteLayers/Layer3"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+layers = 2
+texture = SubResource("ViewportTexture_bii2f")
+
+[node name="Layer4" type="Node3D" parent="SpriteLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="TheatreContruction" type="Node3D" parent="SpriteLayers"]
+
+[node name="GUI" parent="." instance=ExtResource("3_ierxs")]

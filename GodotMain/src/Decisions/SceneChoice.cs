@@ -7,8 +7,7 @@ using Godot;
 public partial class SceneChoice : Node // this is just abstract
 {
     // display data
-    [Export]
-    public virtual var Theme; // godot theme to handle display
+    
     // prompt data
     public string ChoicePrompt;
     public string AiOutPrompt;

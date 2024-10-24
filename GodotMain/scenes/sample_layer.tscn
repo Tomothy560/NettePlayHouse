@@ -14,10 +14,10 @@ material = SubResource("ShaderMaterial_j3u7k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
-position = Vector2(238, 288)
+position = Vector2(596, 343)
 texture = ExtResource("1_rn5tx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 material = SubResource("ShaderMaterial_4du6h")
 use_parent_material = true
-position = Vector2(238, 288)
+anchor_mode = 0
