@@ -64,16 +64,10 @@ func _input(event):
 			KEY_ALT:
 				_alt = event.pressed
 
-	if event is InputEventMouseButton:
-		print("Mouse Click/Unclick at: ", event.position)
-	elif event is InputEventMouseMotion:
-		print("Mouse Motion at: ", event.position)
-
-	# Print the size of the viewport.
-	print("Viewport Resolution is: ", get_viewport().get_visible_rect().size)
-
 # Updates mouselook and movement every frame
 func _process(delta):
+	var viewport_size = get_viewport().size
+	print("Viewport Size: ", viewport_size)
 	_update_mouselook()
 	_update_movement(delta)
 

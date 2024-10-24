@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://caffvsju4knv"]
+[gd_scene load_steps=10 format=3 uid="uid://caffvsju4knv"]
 
-[ext_resource type="Script" path="res://src/DebugTest/camera_controller.gd" id="1_tufi8"]
+[ext_resource type="Script" path="res://src/debug_test/camera_controller.gd" id="1_tufi8"]
 [ext_resource type="PackedScene" uid="uid://bogi1qqgb37jg" path="res://scenes/sample_layer.tscn" id="2_u5c1l"]
 [ext_resource type="PackedScene" uid="uid://cq2lstc7o4sbw" path="res://prefabs/Gui/main_gui.tscn" id="3_ierxs"]
 [ext_resource type="Shader" uid="uid://dr7wpurehnp32" path="res://shaders/sample_sky_shader.tres" id="3_s28j5"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_777cr"]
+exposure_multiplier = 1.688
+auto_exposure_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e3eru"]
 shader = ExtResource("3_s28j5")
@@ -21,9 +25,11 @@ viewport_path = NodePath("SpriteLayers/Layer0/Layer_1/SubViewport")
 
 [node name="SampleScene" type="Node3D"]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="DebugCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
-fov = 92.8125
+attributes = SubResource("CameraAttributesPractical_777cr")
+fov = 61.8
+near = 0.001
 script = ExtResource("1_tufi8")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -66,9 +72,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 layers = 2
 texture = SubResource("ViewportTexture_bii2f")
-
-[node name="Layer4" type="Node3D" parent="SpriteLayers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
 [node name="TheatreContruction" type="Node3D" parent="SpriteLayers"]
 
